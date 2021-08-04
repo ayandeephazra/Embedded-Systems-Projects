@@ -1,0 +1,69 @@
+#include <stdint.h>
+#include <stdbool.h>
+#include <assert.h>
+#include <stdio.h>
+#include <driverlib/sysctl.h>
+#include <inc/hw_ints.h>
+#include <inc/hw_memmap.h>
+#include <inc/hw_i2c.h>
+#include <driverlib/gpio.h>
+#include <driverlib/pin_map.h>
+#include <driverlib/i2c.h>
+#include <driverlib/adc.h>
+#include "ras.h"
+#include "launchpad.h"
+#include "seg7.h"
+#include "seg7digit.h"
+#include <math.h>
+typedef enum
+{
+    On, Off
+} OnOff_t;
+
+// System running state
+static OnOff_t sysState = On;
+
+seg7Display_t seg7Display = { 0, 0, 0, 0 };
+
+void callbackRAS(uint32_t time)                    // the scheduled time
+{
+    uint32_t data[2];
+    uint32_t delay = 50;
+    if (sysState == On)
+    {
+        RASreturn(data);
+        float temp = (float) (4095 - data[0]);
+        float temp2 = (float) temp / 4095;
+        uprintf("%i\n\r", (int) (temp2 * 99));
+        int val = (int) temp2 * 99;
+        //seg7Display.d4 = val / 10;
+        //seg7Display.d3 = val % 10;
+    }
+
+    // schedule the next callback
+    schdCallback(callbackRAS, time + delay);
+}
+
+/**
+ * main.c
+ */
+int main(void)
+{
+    lpInit();
+    seg7Init();
+    RASInit();
+
+    // Schedule the first callback events
+
+    sysState = On;
+    schdCallback(callbackRAS, 1000);
+
+    //    sysState = Off;
+
+    // Run the callback scheduler
+    while (true)
+    {
+        schdExecute();
+    }
+
+}

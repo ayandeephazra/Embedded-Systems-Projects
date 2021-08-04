@@ -1,0 +1,1 @@
+"./main.obj" "./ras.obj" "./ras_asm.obj" "./seg7.obj" "./seg7digit.obj" "./tm4c123gh6pm_startup_ccs.obj" "../tm4c123gh6pm.cmd" -llibc.a -l"C:/Users/Ayan Deep Hazra/Desktop/Summer 2021/ECE266/Lab2/Group2/Util/Util/Debug/Util.lib" -l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" 
