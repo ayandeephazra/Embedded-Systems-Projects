@@ -1,0 +1,1 @@
+"./buzzer.obj" "./buzzer_asm.obj" "./lab4_main.obj" "./motion.obj" "./motion_asm.obj" "./tm4c123gh6pm_startup_ccs.obj" "../tm4c123gh6pm.cmd" -llibc.a -l"C:/Users/Ayan Deep Hazra/Desktop/Summer 2021/ECE266/Lab2/Group2/Util/Util/Debug/Util.lib" -l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" 

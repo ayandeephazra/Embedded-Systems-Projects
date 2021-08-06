@@ -1,0 +1,32 @@
+void callbackCheckPushButton(uint32_t time)
+{
+    uint32_t delay = 10;        // the default delay for the next checking
+
+    int code = pbRead();        // read the pushbutton
+    switch (code)
+    {
+    case 1:                     // SW1: Turn on the system and the alarm
+        sysState = On;
+        if(motionOnOff()==0){
+            ledTurnOnOff(false /* red */, false /* blue */, true /* green */);
+            alarmState = Off;
+        }else{
+            ledTurnOnOff(true /* red */, false /* blue */, false /* green */);
+            alarmState = On;
+        }
+        delay = 250;
+        //schdCallback(callbackCheckPushButton, time + delay);
+        break;
+
+    case 2:                     // SW2: Turn off the system and the alarm
+        sysState = Off;
+        alarmState = Off;
+        ledTurnOnOff(false /* red */, false /* blue */, false/* green */);
+        buzzerOff();
+        delay = 250;
+        break;
+    }
+
+    // schedule the next callback
+    schdCallback(callbackCheckPushButton, time + delay);
+}

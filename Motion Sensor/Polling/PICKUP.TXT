@@ -1,0 +1,3 @@
+bool just use int return value
+
+two functions On and Off -> OnOff AS IT IS INPUT 

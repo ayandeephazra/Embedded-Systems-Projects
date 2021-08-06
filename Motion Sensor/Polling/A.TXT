@@ -1,0 +1,23 @@
+    switch (code)
+    {
+    case 1:                     // SW1: Turn on the system and the alarm
+        sysState = On;
+        if(motionOnOff()==0){
+            ledTurnOnOff(false /* red */, false /* blue */, true /* green */);
+            alarmState = Off;
+        }else{
+            ledTurnOnOff(true /* red */, false /* blue */, false /* green */);
+            alarmState = On;
+        }
+        delay = 250;
+        //schdCallback(callbackCheckPushButton, time + delay);
+        break;
+
+    case 2:                     // SW2: Turn off the system and the alarm
+        sysState = Off;
+        alarmState = Off;
+        ledTurnOnOff(false /* red */, false /* blue */, false/* green */);
+        buzzerOff();
+        delay = 250;
+        break;
+    }
