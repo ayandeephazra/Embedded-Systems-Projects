@@ -1,0 +1,1 @@
+Attach TIVA C Launchpad to the computer using an USB port. Load the main file onto the launchpad. Start the program. Control start stop using right pushbutton and control jumping with the left pushbutton.
