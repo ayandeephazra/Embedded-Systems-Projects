@@ -1,0 +1,1 @@
+Program that displays a Wall Clock. Load onto TIVA C Launchpad the main c file in this directory. Start the program on the Launchpad by pressing the start button. SW1 fast forwards the minutes of the clock. SW2 fast forwards the seconds of the clock. Both take place with wrap around. 
